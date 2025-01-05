@@ -153,5 +153,3 @@ Feel free to contribute or use this API as a base for building your own gRPC-bas
 4. **Testing**: How to run tests if applicable.
 5. **Contributing**: Instructions for others to contribute to the project.
 6. **License**: Information about the license under which the project is distributed.
-
-Make sure to replace `https://github.com/yourusername/todo-api-with-cancellation-support.git` with the actual URL of your repository.
