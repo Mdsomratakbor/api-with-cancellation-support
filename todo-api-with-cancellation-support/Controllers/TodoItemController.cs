@@ -16,10 +16,20 @@ public class TodoItemController : ControllerBase
         _todoItemRepository = todoItemRepository;
     }
 
+    [HttpGet("GetAllWithoutCancellationToken")]
+    public async Task<ActionResult<IEnumerable<TodoItem>>> GetAllWithoutCancellationToken()
+    {
+        Console.WriteLine("Fetching all TodoItems...");
+        await Task.Delay(8000);
+        var items = await _todoItemRepository.GetAllAsync();
+        Console.WriteLine($"Fetched {items.Count()} TodoItems.");
+        return Ok(items);
+    }
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TodoItem>>> GetAll(CancellationToken cancellationToken)
     {
         Console.WriteLine("Fetching all TodoItems...");
+        await Task.Delay(2000);
         var items = await _todoItemRepository.GetAllAsync(cancellationToken);
         Console.WriteLine($"Fetched {items.Count()} TodoItems.");
         return Ok(items);

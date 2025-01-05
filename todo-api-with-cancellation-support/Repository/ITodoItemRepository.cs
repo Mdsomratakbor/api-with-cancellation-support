@@ -5,6 +5,7 @@ namespace todo_api_with_cancellation_support.Repository;
 public interface ITodoItemRepository
 {
     Task<List<TodoItem>> GetAllAsync(CancellationToken cancellationToken);
+    Task<List<TodoItem>> GetAllAsync();
     Task<TodoItem?> GetByIdAsync(int id, CancellationToken cancellationToken);
     Task AddAsync(TodoItem item, CancellationToken cancellationToken);
     Task UpdateAsync(TodoItem item, CancellationToken cancellationToken);

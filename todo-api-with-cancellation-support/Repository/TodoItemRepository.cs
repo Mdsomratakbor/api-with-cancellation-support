@@ -17,7 +17,10 @@ public class TodoItemRepository : ITodoItemRepository
     {
         return await _context.ToDoItems.ToListAsync(cancellationToken);
     }
-
+    public async Task<List<TodoItem>> GetAllAsync()
+    {
+        return await _context.ToDoItems.ToListAsync();
+    }
     public async Task<TodoItem?> GetByIdAsync(int id, CancellationToken cancellationToken)
     {
         return await _context.ToDoItems.FindAsync(new object[] { id }, cancellationToken);
