@@ -1,6 +1,4 @@
-Here’s a **README.md** file for your repository, focusing on your **TODO API with Cancellation Token support**:
 
-```markdown
 # TODO API with Cancellation Token Support
 
 A high-performance, scalable **TODO API** built with **.NET Core** and **gRPC**. This project demonstrates efficient request handling using **CancellationToken** for asynchronous operations, allowing graceful cancellation of long-running tasks. The API implements standard CRUD operations for managing TODO items with enhanced cancellation support.
@@ -146,7 +144,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ---
 
 Feel free to contribute or use this API as a base for building your own gRPC-based applications!
-```
 
 ### Key Elements of the README:
 
