@@ -28,11 +28,26 @@ public class TodoItemController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TodoItem>>> GetAll(CancellationToken cancellationToken)
     {
-        Console.WriteLine("Fetching all TodoItems...");
-        await Task.Delay(2000);
-        var items = await _todoItemRepository.GetAllAsync(cancellationToken);
-        Console.WriteLine($"Fetched {items.Count()} TodoItems.");
-        return Ok(items);
+        try
+        {
+            await Task.Delay(3000, cancellationToken);
+            Console.WriteLine("Fetching all TodoItems...1");
+
+            await Task.Delay(5000, cancellationToken);
+            Console.WriteLine("Fetching all TodoItems...2");
+
+            await Task.Delay(9000, cancellationToken);
+            Console.WriteLine("Fetching all TodoItems...3");
+
+            var items = await _todoItemRepository.GetAllAsync(cancellationToken);
+            Console.WriteLine($"Fetched {items.Count()} TodoItems.");
+            return Ok(items);
+        }
+        catch (TaskCanceledException)
+        {
+            Console.WriteLine("Request was canceled.");
+            return BadRequest("Request was canceled.");
+        }
     }
 
     [HttpGet("{id}")]
