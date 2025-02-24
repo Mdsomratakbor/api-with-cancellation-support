@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Threading;
 using todo_api_with_cancellation_support.Models;
 using todo_api_with_cancellation_support.Repository;
 
@@ -30,14 +31,17 @@ public class TodoItemController : ControllerBase
     {
         try
         {
-            await Task.Delay(3000, cancellationToken);
-            Console.WriteLine("Fetching all TodoItems...1");
+            //await Task.Delay(3000, cancellationToken);
+            // Console.WriteLine("Fetching all TodoItems...1");
 
-            await Task.Delay(5000, cancellationToken);
-            Console.WriteLine("Fetching all TodoItems...2");
+            // await Task.Delay(5000, cancellationToken);
+            //Console.WriteLine("Fetching all TodoItems...2");
 
-            await Task.Delay(9000, cancellationToken);
-            Console.WriteLine("Fetching all TodoItems...3");
+            // await Task.Delay(9000, cancellationToken);
+            //  Console.WriteLine("Fetching all TodoItems...3");
+
+            await PrintMessage(cancellationToken);
+            
 
             var items = await _todoItemRepository.GetAllAsync(cancellationToken);
             Console.WriteLine($"Fetched {items.Count()} TodoItems.");
@@ -49,6 +53,16 @@ public class TodoItemController : ControllerBase
             return BadRequest("Request was canceled.");
         }
     }
+
+    private async Task PrintMessage(CancellationToken cancellationToken)
+    {
+        for (int i = 0; i < 100000; i++)
+        {
+          await  Task.Run(() => Console.WriteLine($"Fetching all TodoItems...{i}"), cancellationToken);
+
+        }
+    }
+
 
     [HttpGet("{id}")]
     public async Task<ActionResult<TodoItem>> GetById(int id, CancellationToken cancellationToken)
